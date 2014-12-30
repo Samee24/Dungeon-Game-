@@ -23,7 +23,6 @@ def player_move(move, person):
 	x, y = person
 
 	if (move == 'LEFT'):		
-<<<<<<< HEAD
 		person = x, y - 1
 	elif(move == 'RIGHT'):
 		person = x, y + 1
@@ -31,25 +30,16 @@ def player_move(move, person):
 		person = x - 1, y
 	elif(move == 'DOWN'):
 		person = x + 1, y
-=======
-	   person = x - 1, y
-	elif(move == 'RIGHT'):
-	   person = x + 1, y
-	elif(move == 'UP'):
-	   person = x, y + 1
-	elif(move == 'DOWN'):
-	   person = x, y - 1
->>>>>>> 21c90ad239dd257d818fbdb6b2759a00609a28c5
 	else:
-	   print("error")
+		print("error")
 	return person
 	
 #The possible locations a user can move
 def checkavailable_moves(person):
 	moves= ["LEFT", "RIGHT", "UP", "DOWN"]
 	x, y = person
+
 	if x == 0:		
-<<<<<<< HEAD
 		moves.remove("UP")
 	if y == 0:
 		moves.remove("LEFT")
@@ -60,6 +50,7 @@ def checkavailable_moves(person):
 
 	return moves
 
+#draw the UI
 def draw_map(player):
 	for cell in CELLS:
 		if cell[1] == 2:
@@ -73,18 +64,6 @@ def draw_map(player):
 			else:
 				print('      _______      ', end = '')
 
-
-=======
-	   moves.remove("LEFT")
-	if y == 0:
-	   moves.remove("DOWN")
-	if x == 2:
-	   moves.remove("RIGHT")
-	if y == 2:
-	   moves.remove("UP")
-	return moves
-
->>>>>>> 21c90ad239dd257d818fbdb6b2759a00609a28c5
 def welcome():
    print("Welcome to my dungeon! Mwahahahaha.")
    print("Enter left, right, up or down. Type QUIT to quit.")
@@ -113,25 +92,15 @@ while True:
 	if move not in moves_avail:
 	   print("Please enter a valid move!")
 	else:		
-<<<<<<< HEAD
-		person = player_move(move, person)
-
-		if person == monster:
-			print("The monster got you. You lost!")
-			break
-		elif person == door:
-			print("You escaped! Hell yeah!!!")
-			break
-	draw_map(person)
-=======
 	   person = player_move(move, person)
+
 	   if person == monster:
 	      print("The monster got you. You lost!")
-	         break
+	      break
 	   elif person == door:
 	      print("You escaped! Hell yeah!!!")
-	         break
->>>>>>> 21c90ad239dd257d818fbdb6b2759a00609a28c5
+	      break
+	   draw_map(person)
 
 
 
