@@ -7,7 +7,7 @@ CELLS = [(0,0), (0,1), (0,2),
 
 
 def set_position(monster, person, door):
-	temp = CELLS
+	temp = CELLS[:]
 	monster = random.choice(temp)
 	temp.remove(monster)
 	person = random.choice(temp)
@@ -22,13 +22,13 @@ def player_move(move, person):
 	x, y = person
 
 	if (move == 'LEFT'):		
-		person = x - 1, y
-	elif(move == 'RIGHT'):
-		person = x + 1, y
-	elif(move == 'UP'):
-		person = x, y + 1
-	elif(move == 'DOWN'):
 		person = x, y - 1
+	elif(move == 'RIGHT'):
+		person = x, y + 1
+	elif(move == 'UP'):
+		person = x - 1, y
+	elif(move == 'DOWN'):
+		person = x + 1, y
 	else:
 		print("error")
 	return person
@@ -38,15 +38,28 @@ def checkavailable_moves(person):
 	x, y = person
 
 	if x == 0:		
-		moves.remove("LEFT")
-	if y == 0:
-		moves.remove("DOWN")
-	if x == 2:
-		moves.remove("RIGHT")
-	if y == 2:
 		moves.remove("UP")
+	if y == 0:
+		moves.remove("LEFT")
+	if x == 2:
+		moves.remove("DOWN")
+	if y == 2:
+		moves.remove("RIGHT")
 
 	return moves
+
+def draw_map(player):
+	for cell in CELLS:
+		if cell[1] == 2:
+			if cell == player:
+				print('      ___X___')
+			else:
+				print('      _______')
+		else:
+			if cell == player:
+				print('      ___X___      ', end = '')
+			else:
+				print('      _______      ', end = '')
 
 
 def welcome():
@@ -61,10 +74,10 @@ monster = tuple()
 person = tuple()
 door = tuple()
 monster, person, door = set_position(monster, person, door)
-print("MONSTER IS AT {}".format(monster))
+print("\nMONSTER IS AT {}".format(monster))
 
 while True:
-	print("You're currently at {}".format(person))
+	print("\nYou're currently at {}".format(person))
 	moves_avail = checkavailable_moves(person)
 	print("You can move {}".format(moves_avail))
 
@@ -87,6 +100,7 @@ while True:
 		elif person == door:
 			print("You escaped! Hell yeah!!!")
 			break
+	draw_map(person)
 
 
 
